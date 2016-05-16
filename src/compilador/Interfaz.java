@@ -5,6 +5,12 @@
  */
 package compilador;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,6 +57,7 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtxta_codigo1 = new javax.swing.JTextArea();
         jlbl_codigosalida = new javax.swing.JLabel();
+        jbtn_abrir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,14 +102,21 @@ public class Interfaz extends javax.swing.JFrame {
 
         jlbl_codigosalida.setText("Codigo salida:");
 
+        jbtn_abrir.setText("Abrir ..");
+        jbtn_abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_abrirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(jlbl_tlines)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtxtf_tlineas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,9 +126,16 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(jtxtf_tpalabras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlbl_codigo))
-                        .addGap(18, 18, 18)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlbl_codigo))
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jbtn_abrir)
+                                .addGap(195, 195, 195)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jbtn_escanear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbtn_intermedio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
@@ -135,12 +156,13 @@ public class Interfaz extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jbtn_escanear))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jbtn_abrir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jlbl_codigo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,6 +197,61 @@ public class Interfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtn_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_abrirActionPerformed
+        
+// TODO add your handling code here:
+        String aux="";
+        String texto="";
+        String total="";
+        String mostrar="";
+        String palabritas="";
+        int palabras=0;
+        int confil=0;
+        int palabrasaux=0;
+        try{
+       
+            JFileChooser file =new JFileChooser();//// qui se elige el archivo
+            file.showOpenDialog(this);
+            
+            
+                    File abre = file.getSelectedFile(); //variable archivo  obtener datos
+                    if(abre!=null){/////////////////   si es distinto de vacio  que  entre 
+                        FileReader archivos =new FileReader(abre);
+                        BufferedReader lee =new BufferedReader(archivos);///  variable  para  leer  archivo 
+
+                        while((aux=lee.readLine())!=null){ //mientras que la linea  no encuentre  un vacio 
+                            palabrasaux=0;
+
+                         StringTokenizer st =new StringTokenizer(aux);    ////   creanfdo el token
+                         while (st.hasMoreTokens()){  ////
+                         //   System.out.println(st.nextToken(" "));
+                         st.nextToken(" ");
+                         palabras++;  // PALABRAS ? 
+                         palabrasaux++; // LINEAS??
+                          //  System.out.println("total de palabras "+palabras);
+                    }
+                 // totalPala+=palabras; 
+                 //   totalPala+=palabrasaux;   
+                   texto+= aux+ "\n";
+                   confil++;
+                   total=confil+"";
+                   palabritas=palabras+"";
+                   // palabritas=palabrasaux+"";
+                 mostrar =mostrar +="\n  fila "+confil+" contiene          " +palabrasaux+" palabras ";
+            }
+             lee.close();                    
+            }
+        }
+         catch(IOException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"" +"\n no se ha encontrado el arechivo ","advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        //txt_MOSTRARLINEAS.setText("\n"+mostrar);
+        jlbl_codigo.setText(texto);
+        jtxtf_tlineas.setText(total);
+        jtxtf_tpalabras.setText(palabritas);
+    }//GEN-LAST:event_jbtn_abrirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,6 +291,7 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbtn_abrir;
     private javax.swing.JButton jbtn_ejecutable;
     private javax.swing.JButton jbtn_ejecutar;
     private javax.swing.JButton jbtn_ensamblar;
