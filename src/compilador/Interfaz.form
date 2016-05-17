@@ -135,6 +135,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Escanear"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_escanearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlbl_codigo">
       <Properties>
@@ -183,6 +186,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Intermedio"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_intermedioActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtn_ensamblar">
       <Properties>
@@ -191,6 +197,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ensamblar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_ensamblarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtn_objeto">
       <Properties>
@@ -199,6 +208,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Objeto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_objetoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtn_ejecutable">
       <Properties>
@@ -207,6 +219,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ejecutable"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_ejecutableActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtn_ejecutar">
       <Properties>
@@ -215,6 +230,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ejecutar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_ejecutarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtn_limpiar">
       <Properties>
@@ -223,6 +241,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_limpiarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>

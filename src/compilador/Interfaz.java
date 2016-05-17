@@ -6,10 +6,13 @@
 package compilador;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
+import java_cup.Main;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -19,10 +22,12 @@ import javax.swing.JOptionPane;
  */
 public class Interfaz extends javax.swing.JFrame {
 
+    /*
     static void setTexto2(String texto) {
         JOptionPane.showMessageDialog(null, texto);
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*
+    /
 
     /**
      * Creates new form Interfaz
@@ -63,6 +68,11 @@ public class Interfaz extends javax.swing.JFrame {
 
         jbtn_escanear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/search.png"))); // NOI18N
         jbtn_escanear.setText("Escanear");
+        jbtn_escanear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_escanearActionPerformed(evt);
+            }
+        });
 
         jlbl_codigo.setText("Codigo:");
 
@@ -80,21 +90,51 @@ public class Interfaz extends javax.swing.JFrame {
 
         jbtn_intermedio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/layers.png"))); // NOI18N
         jbtn_intermedio.setText("Intermedio");
+        jbtn_intermedio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_intermedioActionPerformed(evt);
+            }
+        });
 
         jbtn_ensamblar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/settings-1.png"))); // NOI18N
         jbtn_ensamblar.setText("Ensamblar");
+        jbtn_ensamblar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_ensamblarActionPerformed(evt);
+            }
+        });
 
         jbtn_objeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/record.png"))); // NOI18N
         jbtn_objeto.setText("Objeto");
+        jbtn_objeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_objetoActionPerformed(evt);
+            }
+        });
 
         jbtn_ejecutable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/box.png"))); // NOI18N
         jbtn_ejecutable.setText("Ejecutable");
+        jbtn_ejecutable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_ejecutableActionPerformed(evt);
+            }
+        });
 
         jbtn_ejecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/next.png"))); // NOI18N
         jbtn_ejecutar.setText("Ejecutar");
+        jbtn_ejecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_ejecutarActionPerformed(evt);
+            }
+        });
 
         jbtn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/page.png"))); // NOI18N
         jbtn_limpiar.setText("Limpiar");
+        jbtn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_limpiarActionPerformed(evt);
+            }
+        });
 
         jtxta_codigo1.setColumns(20);
         jtxta_codigo1.setRows(5);
@@ -253,6 +293,94 @@ public class Interfaz extends javax.swing.JFrame {
         jtxtf_tpalabras.setText(palabritas);
     }//GEN-LAST:event_jbtn_abrirActionPerformed
 
+    private void jbtn_escanearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_escanearActionPerformed
+    guardar();
+    new Main();
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_escanearActionPerformed
+
+    private void jbtn_intermedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_intermedioActionPerformed
+try 
+	{
+            String [] cmd = {"intermedio.bat"}; 
+            Runtime.getRuntime().exec(cmd);
+            
+           JOptionPane.showMessageDialog(null,"Codigo intermedio realizado exitosamente!!!");
+            System.out.println("Codigo intermedio realizado exitosamente!!!");
+	} 
+     catch (IOException ioe)
+	{
+	System.out.println (ioe);
+	}        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_intermedioActionPerformed
+
+    private void jbtn_ensamblarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ensamblarActionPerformed
+try 
+	{
+            String [] cmd = {"ensamblador.bat"}; 
+            Runtime.getRuntime().exec(cmd);
+            JOptionPane.showMessageDialog(null,"Codigo Ensamblador realizado exitosamente!!!");
+            System.out.println("Codigo Ensamblador realizado exitosamente!!!");
+	} 
+     catch (IOException ioe)
+	{
+	System.out.println (ioe);
+	}        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_ensamblarActionPerformed
+
+    private void jbtn_objetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_objetoActionPerformed
+try 
+	{
+            String [] cmd = {"objeto.bat"}; 
+            Runtime.getRuntime().exec(cmd);
+            JOptionPane.showMessageDialog(null,"Codigo Objeto realizado exitosamente!!!");
+            System.out.println("Codigo Objeto realizado exitosamente!!!");
+	} 
+     catch (IOException ioe)
+	{
+	System.out.println (ioe);
+	}        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_objetoActionPerformed
+
+    private void jbtn_ejecutableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ejecutableActionPerformed
+try 
+	{
+            String [] cmd = {"ejecutable.bat"}; 
+            Runtime.getRuntime().exec(cmd);
+            JOptionPane.showMessageDialog(null,"Codigo Ejecutable realizado exitosamente!!!");
+            System.out.println("Codigo Ejecutable realizado exitosamente!!!");
+	} 
+     catch (IOException ioe)
+	{
+	System.out.println (ioe);
+	}          
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_ejecutableActionPerformed
+
+    private void jbtn_ejecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ejecutarActionPerformed
+    try 
+	{
+            String [] cmd = {"correr.bat"}; 
+            Runtime.getRuntime().exec(cmd);
+            JOptionPane.showMessageDialog(null,"Ejecutando Programa");
+            System.out.println("Ejecutando Programa");
+	} 
+     catch (IOException ioe)
+	{
+	System.out.println (ioe);
+	}  
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_ejecutarActionPerformed
+
+    private void jbtn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_limpiarActionPerformed
+jtxta_codigo.setText(null);
+jtxta_codigo1.setText("");        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jbtn_limpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,4 +436,28 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtf_tlineas;
     private javax.swing.JTextField jtxtf_tpalabras;
     // End of variables declaration//GEN-END:variables
+
+    private void guardar() {
+         String uno=new String();
+uno=jtxta_codigo.getText();
+try {
+File file1 = new File("entrada.cpp");
+BufferedWriter output = new BufferedWriter(new FileWriter(file1));
+output.write(uno);
+output.close();
+}
+catch(Exception e) {
+JOptionPane.showMessageDialog(null, "No se pudo guardar archivo de entrada debido a "+ e.toString());
+}
+          
+    }
+   /* 
+    protected static void setTexto(String name){
+     jtxta_codigo.setText( jtxta_codigo.getText()+name+"\n");
+    }  
+
+    protected static void setTexto2(String name){
+     jTextArea2.setText( jTextArea2.getText()+name+"\n");
+    }
+*/
 }
