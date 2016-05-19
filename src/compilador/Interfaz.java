@@ -12,9 +12,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
-import java_cup.Main;
+//import java_cup.Main; // esta es la que me genera el error de main() private por que intentaba acceder a otra clase gemela
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import java.io.FileNotFoundException; // por si las dudas..
 
 /**
  *
@@ -68,6 +69,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         jbtn_escanear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/search.png"))); // NOI18N
         jbtn_escanear.setText("Escanear");
+        jbtn_escanear.setDisabledIcon(null);
+        jbtn_escanear.setDisabledSelectedIcon(null);
         jbtn_escanear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_escanearActionPerformed(evt);
@@ -288,7 +291,8 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex+"" +"\n no se ha encontrado el arechivo ","advertencia", JOptionPane.WARNING_MESSAGE);
         }
         //txt_MOSTRARLINEAS.setText("\n"+mostrar);
-        jlbl_codigo.setText(texto);
+        //jlbl_codigo.setText(texto);
+        jtxta_codigo.setText(texto);
         jtxtf_tlineas.setText(total);
         jtxtf_tpalabras.setText(palabritas);
     }//GEN-LAST:event_jbtn_abrirActionPerformed
@@ -431,8 +435,8 @@ jtxta_codigo1.setText("");
     private javax.swing.JLabel jlbl_codigosalida;
     private javax.swing.JLabel jlbl_tlines;
     private javax.swing.JLabel jlbl_tpalabras;
-    private javax.swing.JTextArea jtxta_codigo;
-    private javax.swing.JTextArea jtxta_codigo1;
+    public static javax.swing.JTextArea jtxta_codigo;
+    public static javax.swing.JTextArea jtxta_codigo1;
     private javax.swing.JTextField jtxtf_tlineas;
     private javax.swing.JTextField jtxtf_tpalabras;
     // End of variables declaration//GEN-END:variables
@@ -451,13 +455,13 @@ JOptionPane.showMessageDialog(null, "No se pudo guardar archivo de entrada debid
 }
           
     }
-   /* 
+   
     protected static void setTexto(String name){
-     jtxta_codigo.setText( jtxta_codigo.getText()+name+"\n");
+     jtxta_codigo.setText(jtxta_codigo.getText()+name+"\n");
     }  
 
     protected static void setTexto2(String name){
-     jTextArea2.setText( jTextArea2.getText()+name+"\n");
+     jtxta_codigo1.setText( jtxta_codigo1.getText()+name+"\n");
     }
-*/
+
 }

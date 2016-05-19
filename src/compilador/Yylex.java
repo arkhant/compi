@@ -1,5 +1,8 @@
-package Compilador;
+package compilador;
 import java_cup.runtime.*;
+import javax.swing.*;
+import java.util.*;
+import compilador.*;
 
 
 public class Yylex implements java_cup.runtime.Scanner  {
@@ -95,6 +98,7 @@ int columna=1;
 					yy_buffer.length - yy_buffer_read);
 			if (-1 == next_read) {
 				return YY_EOF;
+                                      ///octavio sanchez gomez //// este es mi codigo  no lo pases
 			}
 			yy_buffer_read = yy_buffer_read + next_read;
 		}
@@ -403,7 +407,7 @@ int columna=1;
 					case 9:
 						{
               System.out.println("error lexico en la fila "+yyline +" y en la columna " + yychar);
-InterfacePrincipal.setlog("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
+Interfaz.setTexto2("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
 	          	}
 					case -10:
 						break;
@@ -538,7 +542,7 @@ InterfacePrincipal.setlog("error lexico :"+  yytext()+" en la fila "+yyline +" y
 					case 42:
 						{
               System.out.println("error lexico en la fila "+yyline +" y en la columna " + yychar);
-InterfacePrincipal.setlog("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
+Interfaz.setTexto2("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
 	          	}
 					case -43:
 						break;
@@ -549,7 +553,7 @@ InterfacePrincipal.setlog("error lexico :"+  yytext()+" en la fila "+yyline +" y
 					case 44:
 						{
               System.out.println("error lexico en la fila "+yyline +" y en la columna " + yychar);
-InterfacePrincipal.setlog("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
+Interfaz.setTexto2("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
 	          	}
 					case -45:
 						break;

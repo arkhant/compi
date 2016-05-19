@@ -28,6 +28,9 @@ public class Main {
             }catch(Exception e)
                 {Interfaz.setTexto2("SE TRUNCO EL PROCESO "+e.toString());}
         }
+       /**
+     * @param args the command line arguments
+     */ 
     public static void main(String[] args) {
         new Interfaz().setVisible(true);
     }

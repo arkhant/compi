@@ -97,6 +97,7 @@ FRASE=("_"|{ALPHA_NUMERIC})("_"|{ALPHA_NUMERIC})*
 
 .		        {
               System.out.println("error lexico en la fila "+yyline +" y en la columna " + yychar);
+      ///octavio sanchez gomez //// este es mi codigo  no lo pases
 interfaz.rotular("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
 
 	          	}
