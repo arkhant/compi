@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -23,34 +26,40 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="jlbl_tlines" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtxtf_tlineas" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jlbl_tpalabras" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtxtf_tpalabras" min="-2" pref="36" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane1" min="-2" pref="242" max="-2" attributes="0"/>
                                   <Component id="jlbl_codigo" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jScrollPane1" min="-2" pref="242" max="-2" attributes="0"/>
+                                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jlbl_stIntermedio" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jlbl_stEnsamblar" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jlbl_stObjeto" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbl_stEjecutable" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbl_stEjecutar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbtn_abrir" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="jbtn_playAll" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="jlbl_stEscanear" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jbtn_escanear" alignment="1" max="32767" attributes="0"/>
                           <Component id="jbtn_intermedio" alignment="1" pref="139" max="32767" attributes="0"/>
@@ -60,69 +69,116 @@
                           <Component id="jbtn_ejecutar" alignment="1" max="32767" attributes="0"/>
                           <Component id="jbtn_limpiar" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="259" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="259" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                              <Component id="jlbl_codigosalida" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="jlbl_codigosalida" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="jlbl_tlines" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jtxtf_tlineas" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlbl_tpalabras" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jtxtf_tpalabras" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jlbl_estatus" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlbl_estatusMensaje" min="-2" pref="440" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jbtn_abrir" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtn_playAll" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlbl_codigo" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="jbtn_escanear" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jbtn_abrir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jlbl_codigo" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbtn_escanear" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_stEscanear" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jbtn_intermedio" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbtn_intermedio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_stIntermedio" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jbtn_ensamblar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbtn_ensamblar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_stEnsamblar" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jbtn_objeto" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbtn_objeto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_stObjeto" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jbtn_ejecutable" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbtn_ejecutable" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_stEjecutable" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jbtn_ejecutar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbtn_ejecutar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_stEjecutar" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jbtn_limpiar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlbl_tlines" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtxtf_tlineas" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlbl_tpalabras" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtxtf_tpalabras" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jlbl_tlines" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtf_tlineas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_tpalabras" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtf_tpalabras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jlbl_estatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbl_estatusMensaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jlbl_codigosalida" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="371" max="-2" attributes="0"/>
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <EmptySpace pref="93" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,6 +196,7 @@
         <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="0" name="null"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_escanearActionPerformed"/>
@@ -162,6 +219,13 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
+          <Events>
+            <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="jtxta_codigoCaretUpdate"/>
+            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jtxta_codigoInputMethodTextChanged"/>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jtxta_codigoPropertyChange"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtxta_codigoKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtxta_codigoKeyReleased"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
@@ -176,16 +240,18 @@
     <Component class="javax.swing.JTextField" name="jtxtf_tlineas">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlbl_tpalabras">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Toral de palabras:"/>
+        <Property name="text" type="java.lang.String" value="Total de palabras:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtf_tpalabras">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbtn_intermedio">
@@ -194,6 +260,7 @@
           <Image iconType="3" name="/png36/layers.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Intermedio"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_intermedioActionPerformed"/>
@@ -205,6 +272,7 @@
           <Image iconType="3" name="/png36/settings-1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ensamblar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_ensamblarActionPerformed"/>
@@ -216,6 +284,7 @@
           <Image iconType="3" name="/png36/record.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Objeto"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_objetoActionPerformed"/>
@@ -227,6 +296,7 @@
           <Image iconType="3" name="/png36/box.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ejecutable"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_ejecutableActionPerformed"/>
@@ -238,6 +308,7 @@
           <Image iconType="3" name="/png36/next.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ejecutar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_ejecutarActionPerformed"/>
@@ -265,6 +336,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -284,6 +356,76 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_abrirActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbtn_playAll">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vamo a compila.."/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_playAllActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_estatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Estatus:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_estatusMensaje">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="esperando..."/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_stEscanear">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ERROR"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_stIntermedio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ERROR"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_stEnsamblar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ERROR"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_stObjeto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ERROR"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_stEjecutable">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ERROR"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbl_stEjecutar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ERROR"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

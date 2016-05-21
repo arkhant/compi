@@ -97,7 +97,6 @@ SIMBOLO::=   COMA:d         {: RESULT =d.toString();:}
            | GETCH:d        {: RESULT =d.toString();:}
            | SCANF:d        {: RESULT =d.toString();:}
            | PRINTF:d       {: RESULT =d.toString();:}
-      ///octavio sanchez gomez //// este es mi codigo  no lo pases
            | ELSE:d         {: RESULT =d.toString();:}
            | IF:d           {: RESULT =d.toString();:}
            | H:d            {: RESULT =d.toString();:}

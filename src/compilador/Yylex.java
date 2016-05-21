@@ -98,7 +98,7 @@ int columna=1;
 					yy_buffer.length - yy_buffer_read);
 			if (-1 == next_read) {
 				return YY_EOF;
-                                      ///octavio sanchez gomez //// este es mi codigo  no lo pases
+                                      
 			}
 			yy_buffer_read = yy_buffer_read + next_read;
 		}

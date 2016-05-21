@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package compilador;
+import java.awt.AWTException;
+import java.awt.Robot; // prueba para delays
+import java.awt.event.KeyEvent;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,6 +19,9 @@ import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.io.FileNotFoundException; // por si las dudas..
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -64,13 +70,28 @@ public class Interfaz extends javax.swing.JFrame {
         jtxta_codigo1 = new javax.swing.JTextArea();
         jlbl_codigosalida = new javax.swing.JLabel();
         jbtn_abrir = new javax.swing.JButton();
+        jbtn_playAll = new javax.swing.JButton();
+        jlbl_estatus = new javax.swing.JLabel();
+        jlbl_estatusMensaje = new javax.swing.JLabel();
+        jlbl_stEscanear = new javax.swing.JLabel();
+        jlbl_stIntermedio = new javax.swing.JLabel();
+        jlbl_stEnsamblar = new javax.swing.JLabel();
+        jlbl_stObjeto = new javax.swing.JLabel();
+        jlbl_stEjecutable = new javax.swing.JLabel();
+        jlbl_stEjecutar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jbtn_escanear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/search.png"))); // NOI18N
         jbtn_escanear.setText("Escanear");
         jbtn_escanear.setDisabledIcon(null);
         jbtn_escanear.setDisabledSelectedIcon(null);
+        jbtn_escanear.setEnabled(false);
         jbtn_escanear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_escanearActionPerformed(evt);
@@ -81,18 +102,46 @@ public class Interfaz extends javax.swing.JFrame {
 
         jtxta_codigo.setColumns(20);
         jtxta_codigo.setRows(5);
+        jtxta_codigo.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jtxta_codigoCaretUpdate(evt);
+            }
+        });
+        jtxta_codigo.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jtxta_codigoInputMethodTextChanged(evt);
+            }
+        });
+        jtxta_codigo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jtxta_codigoPropertyChange(evt);
+            }
+        });
+        jtxta_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxta_codigoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtxta_codigoKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtxta_codigo);
 
         jlbl_tlines.setText("Total de lineas:");
 
         jtxtf_tlineas.setText("0");
+        jtxtf_tlineas.setEnabled(false);
 
-        jlbl_tpalabras.setText("Toral de palabras:");
+        jlbl_tpalabras.setText("Total de palabras:");
 
         jtxtf_tpalabras.setText("0");
+        jtxtf_tpalabras.setEnabled(false);
 
         jbtn_intermedio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/layers.png"))); // NOI18N
         jbtn_intermedio.setText("Intermedio");
+        jbtn_intermedio.setEnabled(false);
         jbtn_intermedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_intermedioActionPerformed(evt);
@@ -101,6 +150,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jbtn_ensamblar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/settings-1.png"))); // NOI18N
         jbtn_ensamblar.setText("Ensamblar");
+        jbtn_ensamblar.setEnabled(false);
         jbtn_ensamblar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_ensamblarActionPerformed(evt);
@@ -109,6 +159,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jbtn_objeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/record.png"))); // NOI18N
         jbtn_objeto.setText("Objeto");
+        jbtn_objeto.setEnabled(false);
         jbtn_objeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_objetoActionPerformed(evt);
@@ -117,6 +168,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jbtn_ejecutable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/box.png"))); // NOI18N
         jbtn_ejecutable.setText("Ejecutable");
+        jbtn_ejecutable.setEnabled(false);
         jbtn_ejecutable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_ejecutableActionPerformed(evt);
@@ -125,6 +177,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jbtn_ejecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/png36/next.png"))); // NOI18N
         jbtn_ejecutar.setText("Ejecutar");
+        jbtn_ejecutar.setEnabled(false);
         jbtn_ejecutar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_ejecutarActionPerformed(evt);
@@ -141,6 +194,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jtxta_codigo1.setColumns(20);
         jtxta_codigo1.setRows(5);
+        jtxta_codigo1.setEnabled(false);
         jScrollPane2.setViewportView(jtxta_codigo1);
 
         jlbl_codigosalida.setText("Codigo salida:");
@@ -152,12 +206,76 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jbtn_playAll.setText("Vamo a compila..");
+        jbtn_playAll.setEnabled(false);
+        jbtn_playAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_playAllActionPerformed(evt);
+            }
+        });
+
+        jlbl_estatus.setText("Estatus:");
+
+        jlbl_estatusMensaje.setText("esperando...");
+
+        jlbl_stEscanear.setText("ERROR");
+
+        jlbl_stIntermedio.setText("ERROR");
+
+        jlbl_stEnsamblar.setText("ERROR");
+
+        jlbl_stObjeto.setText("ERROR");
+
+        jlbl_stEjecutable.setText("ERROR");
+
+        jlbl_stEjecutar.setText("ERROR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbl_codigo)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlbl_stIntermedio, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jlbl_stEnsamblar)
+                                                .addGap(4, 4, 4))
+                                            .addComponent(jlbl_stObjeto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jlbl_stEjecutable, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jlbl_stEjecutar, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jbtn_abrir)
+                                .addGap(48, 48, 48)
+                                .addComponent(jbtn_playAll)
+                                .addGap(63, 63, 63)
+                                .addComponent(jlbl_stEscanear)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jbtn_escanear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_intermedio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(jbtn_ensamblar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_objeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_ejecutable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_ejecutar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_limpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jlbl_codigosalida))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jlbl_tlines)
@@ -166,76 +284,75 @@ public class Interfaz extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlbl_tpalabras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtf_tpalabras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlbl_codigo))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jbtn_abrir)
-                                .addGap(195, 195, 195)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbtn_escanear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtn_intermedio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(jbtn_ensamblar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtn_objeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtn_ejecutable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtn_ejecutar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtn_limpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jlbl_codigosalida)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addComponent(jtxtf_tpalabras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlbl_estatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlbl_estatusMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtn_abrir)
+                            .addComponent(jbtn_playAll))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlbl_codigo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jbtn_escanear))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtn_abrir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jlbl_codigo)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_escanear)
+                            .addComponent(jlbl_stEscanear, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtn_intermedio)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_intermedio)
+                            .addComponent(jlbl_stIntermedio, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jbtn_ensamblar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_ensamblar)
+                            .addComponent(jlbl_stEnsamblar, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtn_objeto)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_objeto)
+                            .addComponent(jlbl_stObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtn_ejecutable)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_ejecutable)
+                            .addComponent(jlbl_stEjecutable, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jbtn_ejecutar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_ejecutar)
+                            .addComponent(jlbl_stEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jbtn_limpiar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbl_tlines)
-                    .addComponent(jtxtf_tlineas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbl_tpalabras)
-                    .addComponent(jtxtf_tpalabras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlbl_tlines)
+                            .addComponent(jtxtf_tlineas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbl_tpalabras)
+                            .addComponent(jtxtf_tpalabras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlbl_estatus)
+                            .addComponent(jlbl_estatusMensaje))
+                        .addGap(11, 11, 11))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jlbl_codigosalida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -293,6 +410,8 @@ public class Interfaz extends javax.swing.JFrame {
         //txt_MOSTRARLINEAS.setText("\n"+mostrar);
         //jlbl_codigo.setText(texto);
         jtxta_codigo.setText(texto);
+        libera_comandos();
+        jlbl_estatusMensaje.setText("Archivo cargado con exito..");
         jtxtf_tlineas.setText(total);
         jtxtf_tpalabras.setText(palabritas);
     }//GEN-LAST:event_jbtn_abrirActionPerformed
@@ -385,6 +504,123 @@ jtxta_codigo1.setText("");
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_limpiarActionPerformed
 
+    private void jbtn_playAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_playAllActionPerformed
+   delaySleep(1000);
+        jbtn_escanearActionPerformed(evt);   
+   delaySleep(1000);
+        jbtn_intermedioActionPerformed(evt);
+   delaySleep(1500);
+        jbtn_ensamblarActionPerformed(evt);
+   delaySleep(1500);
+        jbtn_objetoActionPerformed(evt);
+   delaySleep(1500);
+        jbtn_ejecutableActionPerformed(evt);
+   delaySleep(2500);     
+        jbtn_ejecutarActionPerformed(evt);
+//////////////////////------------------------
+     /*
+    try {
+             
+            Robot robot = new Robot();
+            // Creates the delay of 5 sec so that you can open notepad before
+            // Robot start writting
+            robot.delay(5000);
+            robot.keyPress(KeyEvent.VK_H);
+            robot.keyPress(KeyEvent.VK_I);
+            robot.keyPress(KeyEvent.VK_SPACE);
+            robot.keyPress(KeyEvent.VK_B);
+            robot.keyPress(KeyEvent.VK_U);
+            robot.keyPress(KeyEvent.VK_D);
+            robot.keyPress(KeyEvent.VK_Y);
+             
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+     */
+    //////////////////////------------------------
+        //jbtn_escanearActionPerformed(evt);  // si abre el boton desde aca
+        
+
+//TimeUnit.SECONDS.sleep(1);
+    /*
+    try {
+    Thread.sleep(1000);
+} catch(InterruptedException ex) {
+    Thread.currentThread().interrupt();
+}
+    */
+    /*    
+    try {
+            sleep(1000);
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    */
+    //////////
+    }//GEN-LAST:event_jbtn_playAllActionPerformed
+
+    private void jtxta_codigoInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jtxta_codigoInputMethodTextChanged
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jtxta_codigoInputMethodTextChanged
+
+    private void jtxta_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxta_codigoKeyPressed
+ 
+// TODO add your handling code here:
+    }//GEN-LAST:event_jtxta_codigoKeyPressed
+
+    private void jtxta_codigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxta_codigoKeyReleased
+ if (jtxta_codigo.getText().length()==0){
+        bloqueobloqueobloqueo();
+        jlbl_estatusMensaje.setText("esperando..");
+    }else{
+                libera_comandos();
+                jlbl_estatusMensaje.setText("observando..");
+    }   
+        /*
+        if (jtxta_codigo.getText().length()==0){
+    bloquedobloqueobloqueo();
+        System.out.println("blokeado");
+    }else{
+                libera_comandos();
+    }           // TODO add your handling code here:
+        */
+    }//GEN-LAST:event_jtxta_codigoKeyReleased
+
+    private void jtxta_codigoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtxta_codigoPropertyChange
+    /*if (jtxta_codigo.getText().length()==0){
+        bloqueobloqueobloqueo();
+    }else{
+                libera_comandos();
+        
+    }   
+      */  
+// TODO add your handling code here:
+    }//GEN-LAST:event_jtxta_codigoPropertyChange
+
+    private void jtxta_codigoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtxta_codigoCaretUpdate
+    /*
+        if (jtxta_codigo.getText().length()==0){
+        bloqueobloqueobloqueo();
+    }else{
+                libera_comandos();
+        
+    }   
+        */
+// TODO add your handling code here:
+    }//GEN-LAST:event_jtxta_codigoCaretUpdate
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jlbl_stEscanear.setVisible(false);
+        jlbl_stIntermedio.setVisible(false);
+        jlbl_stEnsamblar.setVisible(false);
+        jlbl_stObjeto.setVisible(false);
+        jlbl_stEjecutable.setVisible(false);
+        jlbl_stEjecutar.setVisible(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -431,8 +667,17 @@ jtxta_codigo1.setText("");
     private javax.swing.JButton jbtn_intermedio;
     private javax.swing.JButton jbtn_limpiar;
     private javax.swing.JButton jbtn_objeto;
+    private javax.swing.JButton jbtn_playAll;
     private javax.swing.JLabel jlbl_codigo;
     private javax.swing.JLabel jlbl_codigosalida;
+    private javax.swing.JLabel jlbl_estatus;
+    private static javax.swing.JLabel jlbl_estatusMensaje;
+    protected static javax.swing.JLabel jlbl_stEjecutable;
+    protected static javax.swing.JLabel jlbl_stEjecutar;
+    protected static javax.swing.JLabel jlbl_stEnsamblar;
+    protected static javax.swing.JLabel jlbl_stEscanear;
+    protected static javax.swing.JLabel jlbl_stIntermedio;
+    protected static javax.swing.JLabel jlbl_stObjeto;
     private javax.swing.JLabel jlbl_tlines;
     private javax.swing.JLabel jlbl_tpalabras;
     public static javax.swing.JTextArea jtxta_codigo;
@@ -451,6 +696,7 @@ output.write(uno);
 output.close();
 }
 catch(Exception e) {
+  Interfaz.setEstatusMensaje("No se pudo guardar archivo de entrada debido a ", 1);  
 JOptionPane.showMessageDialog(null, "No se pudo guardar archivo de entrada debido a "+ e.toString());
 }
           
@@ -462,6 +708,50 @@ JOptionPane.showMessageDialog(null, "No se pudo guardar archivo de entrada debid
 
     protected static void setTexto2(String name){
      jtxta_codigo1.setText( jtxta_codigo1.getText()+name+"\n");
+    }
+    
+    protected static void setEstatusMensaje(String texto,Integer modo){
+//        jlbl_estatusMensaje.setText(texto);
+        if (modo==1){ // 1 para error
+            jlbl_estatusMensaje.setText(texto);
+            jlbl_estatusMensaje.setBackground(java.awt.Color.red);
+            jlbl_estatusMensaje.setOpaque(true);
+            jlbl_estatusMensaje.setForeground(java.awt.Color.white);
+        }
+        if (modo==2){ // 2 para ok
+            jlbl_estatusMensaje.setText(texto);
+            jlbl_estatusMensaje.setBackground(java.awt.Color.green);
+            jlbl_estatusMensaje.setOpaque(true);
+            jlbl_estatusMensaje.setForeground(java.awt.Color.black);
+        }
+    }
+
+    private void delaySleep(int i) {
+     try {
+    Thread.sleep(i);
+        } catch(InterruptedException ex) {
+    Thread.currentThread().interrupt();
+}    
+    }
+
+    private void bloqueobloqueobloqueo() {
+        jbtn_escanear.setEnabled(false);
+                jbtn_intermedio.setEnabled(false);
+                jbtn_ensamblar.setEnabled(false);
+                jbtn_objeto.setEnabled(false);
+                jbtn_ejecutable.setEnabled(false);
+                jbtn_ejecutar.setEnabled(false);
+                jbtn_playAll.setEnabled(false);
+    }
+
+    private void libera_comandos() {
+         jbtn_escanear.setEnabled(true);
+                jbtn_intermedio.setEnabled(true);
+                jbtn_ensamblar.setEnabled(true);
+                jbtn_objeto.setEnabled(true);
+                jbtn_ejecutable.setEnabled(true);
+                jbtn_ejecutar.setEnabled(true);
+                jbtn_playAll.setEnabled(true);
     }
 
 }

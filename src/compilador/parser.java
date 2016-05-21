@@ -97,7 +97,7 @@ public class parser extends java_cup.runtime.lr_parser {
     "\043\ufff5\044\ufff5\045\ufff5\046\ufff5\001\002\000\112\002" +
     "\ufffe\004\ufffe\005\ufffe\006\ufffe\007\ufffe\010\ufffe\011\ufffe" +
     "\012\ufffe\013\ufffe\014\ufffe\015\ufffe\016\ufffe\017\ufffe\020" +
-    "\ufffe\021\ufffe\022\ufffe\023\ufffe\024\ufffe\025\ufffe\026\ufffe" +                                                                                                                                                                                    ///octavio sanchez gomez //// este es mi codigo  no lo pases
+    "\ufffe\021\ufffe\022\ufffe\023\ufffe\024\ufffe\025\ufffe\026\ufffe" +                                                                                                                                                                                    
     "\027\ufffe\030\ufffe\031\ufffe\032\ufffe\033\ufffe\034\ufffe\035" +
     "\ufffe\036\ufffe\037\ufffe\040\ufffe\041\ufffe\042\ufffe\043\ufffe" +
     "\044\ufffe\045\ufffe\046\ufffe\001\002\000\112\002\uffec\004" +
