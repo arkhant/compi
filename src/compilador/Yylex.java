@@ -552,8 +552,9 @@ Interfaz.setTexto2("error lexico :"+  yytext()+" en la fila "+yyline +" y en la 
 						break;
 					case 44:
 						{
-              System.out.println("error lexico en la fila "+yyline +" y en la columna " + yychar);
+              System.out.println("error lexico en la fila "+yyline +" y en la columna " + yychar);// AQUI LANZA el error por \n
 Interfaz.setTexto2("error lexico :"+  yytext()+" en la fila "+yyline +" y en la columna " + yychar);
+//Interfaz.setEstatusMensaje("error lexico en la fila "+yyline +" y en la columna " + yychar, 1); // es inutil gana el main en warnings
 	          	}
 					case -45:
 						break;

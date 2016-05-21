@@ -1,4 +1,4 @@
-@echo
+@echo off
 
 del entrada.o
 del entrada.s

@@ -419,6 +419,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void jbtn_escanearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_escanearActionPerformed
     guardar();
     new Main();
+    jbtn_intermedio.setEnabled(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_escanearActionPerformed
 
@@ -428,12 +429,27 @@ try
             String [] cmd = {"intermedio.bat"}; 
             Runtime.getRuntime().exec(cmd);
             
-           JOptionPane.showMessageDialog(null,"Codigo intermedio realizado exitosamente!!!");
+           //JOptionPane.showMessageDialog(null,"Codigo intermedio realizado exitosamente!!!");
+           setEstatusMensaje("Codigo intermedio realizado exitosamente!!!", 2); 
             System.out.println("Codigo intermedio realizado exitosamente!!!");
+            
+            Interfaz.jlbl_stIntermedio.setVisible(true);
+            Interfaz.jlbl_stIntermedio.setText("OK");
+            Interfaz.jlbl_stIntermedio.setBackground(java.awt.Color.green);
+            Interfaz.jlbl_stIntermedio.setOpaque(true);
+            Interfaz.jlbl_stIntermedio.setForeground(java.awt.Color.black);
+            
+            jbtn_ensamblar.setEnabled(true);
 	} 
      catch (IOException ioe)
 	{
 	System.out.println (ioe);
+        setEstatusMensaje("algo fallo con en intermedio: "+ioe, 1); 
+        Interfaz.jlbl_stIntermedio.setVisible(true);
+        Interfaz.jlbl_stIntermedio.setText("ERROR");
+        Interfaz.jlbl_stIntermedio.setBackground(java.awt.Color.red);
+        Interfaz.jlbl_stIntermedio.setOpaque(true);
+        Interfaz.jlbl_stIntermedio.setForeground(java.awt.Color.white);
 	}        
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_intermedioActionPerformed
@@ -443,12 +459,28 @@ try
 	{
             String [] cmd = {"ensamblador.bat"}; 
             Runtime.getRuntime().exec(cmd);
-            JOptionPane.showMessageDialog(null,"Codigo Ensamblador realizado exitosamente!!!");
+            //JOptionPane.showMessageDialog(null,"Codigo Ensamblador realizado exitosamente!!!");
+            Interfaz.setEstatusMensaje("Codigo Ensamblador realizado exitosamente!!!", 2);  
             System.out.println("Codigo Ensamblador realizado exitosamente!!!");
+            
+            Interfaz.jlbl_stEnsamblar.setVisible(true);
+            Interfaz.jlbl_stEnsamblar.setText("OK");
+            Interfaz.jlbl_stEnsamblar.setBackground(java.awt.Color.green);
+            Interfaz.jlbl_stEnsamblar.setOpaque(true);
+            Interfaz.jlbl_stEnsamblar.setForeground(java.awt.Color.black);
+            
+            jbtn_objeto.setEnabled(true);
 	} 
      catch (IOException ioe)
 	{
 	System.out.println (ioe);
+        Interfaz.setEstatusMensaje("algo fallo en ensamblar.."+ioe, 1);  
+        
+        Interfaz.jlbl_stEnsamblar.setVisible(true);
+        Interfaz.jlbl_stEnsamblar.setText("ERROR");
+        Interfaz.jlbl_stEnsamblar.setBackground(java.awt.Color.red);
+        Interfaz.jlbl_stEnsamblar.setOpaque(true);
+        Interfaz.jlbl_stEnsamblar.setForeground(java.awt.Color.white);
 	}        
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_ensamblarActionPerformed
@@ -458,12 +490,28 @@ try
 	{
             String [] cmd = {"objeto.bat"}; 
             Runtime.getRuntime().exec(cmd);
-            JOptionPane.showMessageDialog(null,"Codigo Objeto realizado exitosamente!!!");
+            //JOptionPane.showMessageDialog(null,"Codigo Objeto realizado exitosamente!!!");
+            Interfaz.setEstatusMensaje("Codigo Objeto realizado exitosamente!!!", 2);   
             System.out.println("Codigo Objeto realizado exitosamente!!!");
+            
+            Interfaz.jlbl_stObjeto.setVisible(true);
+            Interfaz.jlbl_stObjeto.setText("OK");
+            Interfaz.jlbl_stObjeto.setBackground(java.awt.Color.green);
+            Interfaz.jlbl_stObjeto.setOpaque(true);
+            Interfaz.jlbl_stObjeto.setForeground(java.awt.Color.black);
+  
+  		 jbtn_ejecutable.setEnabled(true);
 	} 
      catch (IOException ioe)
 	{
 	System.out.println (ioe);
+        Interfaz.setEstatusMensaje("algo fallo en objeto.."+ioe, 1);  
+        
+        Interfaz.jlbl_stObjeto.setVisible(true);
+        Interfaz.jlbl_stObjeto.setText("ERROR");
+        Interfaz.jlbl_stObjeto.setBackground(java.awt.Color.red);
+        Interfaz.jlbl_stObjeto.setOpaque(true);
+        Interfaz.jlbl_stObjeto.setForeground(java.awt.Color.white);
 	}        
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_objetoActionPerformed
@@ -473,12 +521,28 @@ try
 	{
             String [] cmd = {"ejecutable.bat"}; 
             Runtime.getRuntime().exec(cmd);
-            JOptionPane.showMessageDialog(null,"Codigo Ejecutable realizado exitosamente!!!");
+            //JOptionPane.showMessageDialog(null,"Codigo Ejecutable realizado exitosamente!!!");
+            Interfaz.setEstatusMensaje("Codigo Ejecutable realizado exitosamente!!", 2);  
             System.out.println("Codigo Ejecutable realizado exitosamente!!!");
+            
+            Interfaz.jlbl_stEjecutable.setVisible(true);
+            Interfaz.jlbl_stEjecutable.setText("OK");
+            Interfaz.jlbl_stEjecutable.setBackground(java.awt.Color.green);
+            Interfaz.jlbl_stEjecutable.setOpaque(true);
+            Interfaz.jlbl_stEjecutable.setForeground(java.awt.Color.black);
+  
+  		 jbtn_ejecutar.setEnabled(true);
 	} 
      catch (IOException ioe)
 	{
 	System.out.println (ioe);
+        Interfaz.setEstatusMensaje("Algo fallo en ejecutable.. "+ioe, 1);  
+        
+        Interfaz.jlbl_stEjecutable.setVisible(true);
+        Interfaz.jlbl_stEjecutable.setText("ERROR");
+        Interfaz.jlbl_stEjecutable.setBackground(java.awt.Color.red);
+        Interfaz.jlbl_stEjecutable.setOpaque(true);
+        Interfaz.jlbl_stEjecutable.setForeground(java.awt.Color.white);
 	}          
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_ejecutableActionPerformed
@@ -488,12 +552,27 @@ try
 	{
             String [] cmd = {"correr.bat"}; 
             Runtime.getRuntime().exec(cmd);
-            JOptionPane.showMessageDialog(null,"Ejecutando Programa");
+            //JOptionPane.showMessageDialog(null,"Ejecutando Programa");
+            Interfaz.setEstatusMensaje("Ejecutando Programa.. ", 2);  
             System.out.println("Ejecutando Programa");
+            
+            Interfaz.jlbl_stEjecutar.setVisible(true);
+            Interfaz.jlbl_stEjecutar.setText("OK");
+            Interfaz.jlbl_stEjecutar.setBackground(java.awt.Color.green);
+            Interfaz.jlbl_stEjecutar.setOpaque(true);
+            Interfaz.jlbl_stEjecutar.setForeground(java.awt.Color.black);
+  
 	} 
      catch (IOException ioe)
 	{
 	System.out.println (ioe);
+        Interfaz.setEstatusMensaje("falla al lanzar el ejecutable.. "+ioe, 2);  
+        
+        Interfaz.jlbl_stEjecutar.setVisible(true);
+        Interfaz.jlbl_stEjecutar.setText("ERROR");
+        Interfaz.jlbl_stEjecutar.setBackground(java.awt.Color.red);
+        Interfaz.jlbl_stEjecutar.setOpaque(true);
+        Interfaz.jlbl_stEjecutar.setForeground(java.awt.Color.white);
 	}  
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_ejecutarActionPerformed
@@ -501,6 +580,13 @@ try
     private void jbtn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_limpiarActionPerformed
 jtxta_codigo.setText(null);
 jtxta_codigo1.setText("");        
+dispose();
+Interfaz intermas = new Interfaz();
+	intermas.setVisible(true);
+
+     //initComponents();
+//this.dispose(); 
+  //  new Interfaz();
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_limpiarActionPerformed
 
@@ -612,6 +698,16 @@ jtxta_codigo1.setText("");
     }//GEN-LAST:event_jtxta_codigoCaretUpdate
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+         try 
+	{
+            String [] cmd = {"deleter.bat"}; 
+            Runtime.getRuntime().exec(cmd);
+        } 
+     catch (IOException ioe)
+	{
+            JOptionPane.showMessageDialog(null,"Mientras se borraban los archivos algo paso: "+ioe);
+	}   
+
         jlbl_stEscanear.setVisible(false);
         jlbl_stIntermedio.setVisible(false);
         jlbl_stEnsamblar.setVisible(false);
@@ -746,11 +842,13 @@ JOptionPane.showMessageDialog(null, "No se pudo guardar archivo de entrada debid
 
     private void libera_comandos() {
          jbtn_escanear.setEnabled(true);
+         /*
                 jbtn_intermedio.setEnabled(true);
                 jbtn_ensamblar.setEnabled(true);
                 jbtn_objeto.setEnabled(true);
                 jbtn_ejecutable.setEnabled(true);
                 jbtn_ejecutar.setEnabled(true);
+*/
                 jbtn_playAll.setEnabled(true);
     }
 
